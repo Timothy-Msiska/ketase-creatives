@@ -22,7 +22,6 @@ export function Header() {
   useEffect(() => {
     const handleScroll = () => {
       const current = window.scrollY;
-
       if (current === 0) {
         setIsScrolled(false);
         setIsVisible(true);
@@ -33,7 +32,6 @@ export function Header() {
         setIsScrolled(true);
         setIsVisible(false);
       }
-
       setLastScrollY(current);
     };
 
@@ -106,6 +104,31 @@ export function Header() {
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </nav>
+
+      {/* Mobile Menu */}
+      {isOpen && (
+        <div className="md:hidden absolute top-full left-0 w-full bg-white shadow-lg rounded-b-2xl overflow-hidden animate-slide-down">
+          <div className="flex flex-col items-center py-6 gap-6">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-xl font-semibold text-[#1AA089] hover:text-[#13806d] transition-colors"
+                onClick={() => setIsOpen(false)}
+              >
+                {link.label}
+              </Link>
+            ))}
+            <Link
+              href="/contact"
+              className="px-6 py-3 bg-[#1AA089] text-white rounded-full font-semibold hover:bg-[#13806d] hover:scale-105 transition-all"
+              onClick={() => setIsOpen(false)}
+            >
+              Contact
+            </Link>
+          </div>
+        </div>
+      )}
     </header>
   );
 }

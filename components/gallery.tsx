@@ -24,9 +24,15 @@ const galleryData: Record<string, GalleryItem[]> = {
   Campaign: [
     { id: 5, title: 'Product Launch Campaign', year: 2023, image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80', slug: 'product-launch-campaign' },
   ],
-  Design: [
-    { id: 6, title: 'Packaging Design', year: 2024, image: 'https://images.unsplash.com/photo-1585386959984-a41552231693?auto=format&fit=crop&w=1200&q=80', slug: 'packaging-design' },
-  ],
+Design: [
+  {
+    id: 6,
+    title: 'Packaging Design',
+    year: 2024,
+    image: '/design-package.png',
+    slug: 'packaging-design'
+  },
+],
 };
 
 export function Gallery() {
