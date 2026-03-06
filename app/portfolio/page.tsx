@@ -4,12 +4,15 @@ import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { useSearchParams } from 'next/navigation';
 import { PORTFOLIO_ITEMS, PortfolioItem } from '../data/service';
 
 const categories = ['All', 'Branding', 'Digital', 'Campaign', 'Design'];
 
 export default function PortfolioPage() {
-  const [selectedCategory, setSelectedCategory] = useState('All');
+  const searchParams = useSearchParams();
+  const initialCategory = searchParams.get('category') || 'All';
+  const [selectedCategory, setSelectedCategory] = useState(initialCategory);
   const [visibleItems, setVisibleItems] = useState<number[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -45,6 +48,16 @@ export default function PortfolioPage() {
     elements.forEach((el) => observer.observe(el));
 
     return () => observer.disconnect();
+  }, [filtered]);
+
+  // Scroll to first item after filter change
+  useEffect(() => {
+    if (filtered.length > 0 && containerRef.current) {
+      const firstItem = containerRef.current.querySelector(
+        `[data-id="${filtered[0].id}"]`
+      );
+      firstItem?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }, [filtered]);
 
   return (
@@ -91,7 +104,7 @@ export default function PortfolioPage() {
             return (
               <Link
                 key={item.id}
-                href={`/portfolio/${item.slug}`}
+                href={`/portfolio/${item.slug}?category=${item.category}`}
                 data-id={item.id}
                 className="block"
               >
@@ -104,7 +117,7 @@ export default function PortfolioPage() {
                       : 'opacity-0 translate-y-10'
                   }`}
                   style={{
-                    rotate: 0, // Cards fully upright
+                    rotate: 0, // Cards upright
                     transitionDelay: `${i * 100}ms`,
                   }}
                 >
