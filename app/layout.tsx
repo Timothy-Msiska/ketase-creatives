@@ -28,13 +28,13 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: "/icon-light-32x32.png",
+        url: "/ketase-creatives-logo.svg",
         media: "(prefers-color-scheme: light)",
         sizes: "32x32",
         type: "image/png",
       },
       {
-        url: "/icon-dark-32x32.png",
+        url: "/ketase-creatives-logo.svg",
         media: "(prefers-color-scheme: dark)",
         sizes: "32x32",
         type: "image/png",
