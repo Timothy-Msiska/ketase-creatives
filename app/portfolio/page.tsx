@@ -87,8 +87,6 @@ export default function PortfolioPage() {
         >
           {filtered.map((item, i) => {
             const visible = visibleItems.includes(item.id);
-            const tilt =
-              i % 3 === 0 ? '-3deg' : i % 3 === 1 ? '2deg' : '-2deg';
 
             return (
               <Link
@@ -100,13 +98,13 @@ export default function PortfolioPage() {
                 <motion.div
                   animate={visible ? { y: [0, -10, 0] } : {}}
                   transition={{ repeat: Infinity, duration: 4 }}
-                  className={`rounded-2xl overflow-hidden shadow-md transition duration-500 hover:scale-105 hover:rotate-0 ${
+                  className={`rounded-2xl overflow-hidden shadow-md transition duration-500 hover:scale-105 ${
                     visible
                       ? 'opacity-100 translate-y-0'
                       : 'opacity-0 translate-y-10'
                   }`}
                   style={{
-                    rotate: tilt,
+                    rotate: 0, // Cards fully upright
                     transitionDelay: `${i * 100}ms`,
                   }}
                 >
