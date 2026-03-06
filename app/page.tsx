@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Hero } from '@/components/hero';
+import Hero from '@/components/hero';
 import { Capabilities } from '@/components/capabilities';
 import { Gallery } from '@/components/gallery';
 import { CTASection } from '@/components/cta-section';
